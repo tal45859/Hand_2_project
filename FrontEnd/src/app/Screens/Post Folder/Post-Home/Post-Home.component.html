@@ -1,0 +1,60 @@
+<div class="container ">
+  <div class="mt-5 mb-5">
+    <button *ngIf="this.Token!='null' " [routerLink]="'/AllMyPost'" type="button"  class="btn btn-secondary btn-circle btn-xl ms-2">המודעות שלי</button>
+    <button type="button" (click)="this.CategoryId=39" class="btn btn-secondary btn-circle btn-xl ms-2">ריהוט</button>
+    <button type="button" (click)="this.CategoryId=48" class="btn btn-secondary btn-circle btn-xl ms-2">סלולרי</button>
+    <button type="button" (click)="this.CategoryId=16" class="btn btn-secondary btn-circle btn-xl ms-2">מחשבים וציוד נלווה</button>
+    <button type="button" (click)="this.CategoryId=46" class="btn btn-secondary btn-circle btn-xl ms-2">מוצרי חשמל</button>
+    <button type="button" (click)="this.CategoryId=7" class="btn btn-secondary btn-circle btn-xl ms-2">קונסולות משחק</button>
+    <button type="button" (click)="this.CategoryId=42" class="btn btn-secondary btn-circle btn-xl ms-2">אופנה וטיפוח</button>
+    <button type="button" (click)="this.CategoryId=31" class="btn btn-secondary btn-circle btn-xl ms-2">אופניים</button>
+    <button type="button" (click)="this.CategoryId=29" class="btn btn-secondary btn-circle btn-xl ms-2">ילדים ותינוקות</button>
+    <button type="button" (click)="this.CategoryId=55" class="btn btn-secondary btn-circle btn-xl ms-2">ספורט</button>
+    <button type="button" class="btn btn-secondary btn-circle btn-xl ms-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">עוד...</button>
+    <button *ngIf="this.Token!='null' " type="button" (click)="this.CategoryId=-1" class="btn btn-secondary btn-circle btn-xl ms-2">הוספת מודעה</button>
+    <button *ngIf="this.Token=='null' " type="button" (click)="this.CategoryId=-1" class="btn btn-secondary btn-circle btn-xl ms-2"  data-bs-toggle="modal" data-bs-target="#staticBackdropp">הוספת מודעה</button>
+
+  </div>
+  <div> </div>
+</div>
+
+
+<app-All-Post *ngIf="this.CategoryId!=-1" [CategoryId]="this.CategoryId"></app-All-Post>
+<app-Add-PostHome *ngIf="CategoryId==-1"></app-Add-PostHome>
+
+
+
+<div  class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <h2 class="modal-title" id="staticBackdropLabel">כל הקטגוריות</h2>
+      </div>
+      <div class="modal-body row" *ngFor="let item of ArrAllCategory">
+       <button type="button" (click)="this.CategoryId=item.Id" class="btn btn-secondary" data-bs-dismiss="modal">{{item.CategoryName}}</button>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ביטול</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div  class="modal fade" id="staticBackdropp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdroppLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <h2 class="modal-title" id="staticBackdroppLabel">הוספת מודעה</h2>
+      </div>
+      <div class="modal-body row">
+        <p>על מנת להוסיף מודעה עליך להתחבר/להירשם לאתר ולאחר מכן לנסות שנית</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ביטול</button>
+        <a type="button" href="/Login" class="btn btn-primary" >להתחברות</a>
+        <a type="button" href="/SingUp" class="btn btn-primary">להרשמה</a>
+      </div>
+    </div>
+  </div>
+</div>

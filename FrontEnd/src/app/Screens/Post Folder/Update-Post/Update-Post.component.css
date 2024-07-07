@@ -1,0 +1,13 @@
+input,textarea,input,select,option::placeholder
+{
+  text-align: center;
+}
+
+.container
+{
+  direction: rtl;
+  text-align: center;
+  width: 50%;
+}
+
+

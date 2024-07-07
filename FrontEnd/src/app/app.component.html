@@ -1,0 +1,12 @@
+<div>
+  <app-Header *ngIf="RoleNav==null" [HeaderNavBarData]="DefultNavBar"></app-Header>
+  <app-Header *ngIf="RoleNav=='Classic'"[HeaderNavBarData]="ClassicNavBar"></app-Header>
+  <app-Header *ngIf="RoleNav=='Admin'"[HeaderNavBarData]="AdminNavBar"></app-Header>
+</div>
+<main class="d-flex flex-column justify-content-between h-100 bg ">
+  <div>
+    <app-Content class="col-10"></app-Content>
+  </div>
+</main>
+
+<app-Footer ></app-Footer>

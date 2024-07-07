@@ -1,0 +1,79 @@
+<div class="container">
+  <h2 class="mt5 mb-5">עדכון מודעה</h2>
+
+  <div class="mb-3 ">
+    <input class="form-control {{this.ResponseMessage[0].Isok?'':'is-invalid'}}" type="text" title="כותרת" autocapitalize="Title" placeholder="כותרת" [(ngModel)]="this.PostObjForUpdate.Title"
+    id="validationTitle" aria-describedby="validationTitleFeedback" required>
+    <div id="validationTitleFeedback" class="invalid-feedback">
+      {{this.ResponseMessage[0].Message}}
+    </div>
+  </div>
+
+  <div class="mb-3 ">
+    <textarea class="form-control {{this.ResponseMessage[1].Isok?'':'is-invalid'}}" type="text" title="תוכן" autocapitalize="Body" placeholder="תוכן" [(ngModel)]="this.PostObjForUpdate.Body"
+    id="validationBody" aria-describedby="validationBodyFeedback" required>
+    </textarea>
+    <div id="validationBodyFeedback" class="invalid-feedback">
+      {{this.ResponseMessage[1].Message}}
+    </div>
+  </div>
+
+  <div class="mb-3 ">
+    <input class="form-control {{this.ResponseMessage[2].Isok?'':'is-invalid'}}" type="number" title="מחיר" autocapitalize="Price" placeholder="מחיר" [(ngModel)]="this.PostObjForUpdate.Price"
+    id="validationPrice" aria-describedby="validationPriceFeedback" required>
+    <div id="validationPriceFeedback" class="invalid-feedback">
+      {{this.ResponseMessage[2].Message}}
+    </div>
+  </div>
+
+  <div  class="mt-2">
+    <label for="validationServerCategorySelect" class="form-label ">בחר קטגוריה</label>
+    <select class="form-select {{this.ResponseMessage[3].Isok?'':'is-invalid'}}"
+      id="validationServerCategorySelect" aria-describedby="validationServerCategorySelectFeedback"
+      [(ngModel)]="this.CategoryId" (change)="GetALlSubCategoryByCategoryId()" required>
+      <option  *ngFor=" let item of ArrAllCategory" [value]="item.Id">{{item.CategoryName}}</option>
+    </select>
+    <div id="validationServerCategorySelectFeedback" class="invalid-feedback">
+      {{this.ResponseMessage[3].Message}}
+    </div>
+  </div>
+
+
+    <div *ngIf="this.CategoryId!=this.PostObjForUpdate.SubcategoryId"  class="mt-3"  >
+    <label for="validationServerSubCategorySelect" class="form-label ">בחר תת קטגוריה</label>
+    <select class="form-select {{this.ResponseMessage[4].Isok?'':'is-invalid'}}"
+      id="validationServerSubCategorySelect" aria-describedby="validationServerSubCategorySelectFeedback"
+      [(ngModel)]="this.PostObjForUpdate.SubcategoryId" required>
+      <option  *ngFor=" let item of ArrAllSubCategory " [value]="item.Id">{{item.SubcategoryName}}</option>
+    </select>
+    <div id="validationServerSubCategorySelectFeedback" class="invalid-feedback">
+      {{this.ResponseMessage[4].Message}}
+    </div>
+  </div>
+
+    <div class="mt-3">
+    <label for="validationServerAreaSelect" class="form-label ">בחר אזור</label>
+    <select class="form-select {{this.ResponseMessage[5].Isok?'':'is-invalid'}}"
+      id="validationServerAreaSelect" aria-describedby="validationServerAreaSelectFeedback"
+      [(ngModel)]="this.PostObjForUpdate.AreaId" required>
+      <option  *ngFor=" let item of ArrAllArea " [value]="item.Id">{{item.AreaName}}</option>
+    </select>
+    <div id="validationServerAreaSelectFeedback" class="invalid-feedback">
+      {{this.ResponseMessage[5].Message}}
+    </div>
+  </div>
+
+
+  <div *ngIf="!spiner" class="mt-3">
+    <button type="button" class="btn btn-primary" (click)="ClickUpdatePost()">הבא</button>
+  </div>
+
+  <div *ngIf="spiner" class="spinner-border text-primary mt-3" role="status">
+    <span class="sr-only"></span>
+  </div>
+
+
+
+</div>
+
+

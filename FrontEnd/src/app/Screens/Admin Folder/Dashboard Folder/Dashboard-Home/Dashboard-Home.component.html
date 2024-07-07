@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="mt-3">
+    <button class="btn btn-dark ms-2" (click)="Select=1">ניהול קטגוריות</button>
+    <button class="btn btn-dark ms-2" (click)="Select=2">ניהול אזורים</button>
+    <button class="btn btn-dark" (click)="Select=3">ניהול דיווחים</button>
+  </div>
+</div>
+<app-Category-Home *ngIf="Select==1"> </app-Category-Home>
+<app-Area-Home *ngIf="Select==2"></app-Area-Home>
+<app-Reporting-Home *ngIf="Select==3"></app-Reporting-Home>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h1>Simple CSS Bar Chart</h1>
+<div class="simple-bar-chart">
+
+  <div class="item" style="--clr: #5EB344; --val: 80">
+    <div class="label">Label 1</div>
+    <div class="value">80%</div>
+  </div>
+
+  <div class="item" style="--clr: #FCB72A; --val: 50">
+    <div class="label">Label 2</div>
+    <div class="value">50%</div>
+  </div>
+
+  <div class="item" style="--clr: #F8821A; --val: 100">
+    <div class="label">Label 3</div>
+    <div class="value">100%</div>
+  </div>
+
+  <div class="item" style="--clr: #E0393E; --val: 15">
+    <div class="label">Label 4</div>
+    <div class="value">15%</div>
+  </div>
+
+  <div class="item" style="--clr: #963D97; --val: 1">
+    <div class="label">Label 5</div>
+    <div class="value">1%</div>
+  </div>
+
+  <div class="item" style="--clr: #069CDB; --val: 90">
+    <div class="label">Label 6</div>
+    <div class="value">90%</div>
+  </div>
+
+</div> -->

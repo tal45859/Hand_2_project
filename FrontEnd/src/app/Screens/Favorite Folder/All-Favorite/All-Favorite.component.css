@@ -1,0 +1,37 @@
+.container
+{
+  direction: rtl;
+  text-align: center;
+
+}
+hr{
+  width: 25%;
+  margin-right: 37.5%;
+}
+
+.card-img-top
+{
+  height: 250px;
+}
+
+select,option
+{
+  text-align: center;
+}
+
+.AddDisplay{
+  display: contents;
+  justify-content: center;
+}
+.removeDisplay
+{
+  display: none;
+}
+input,input::placeholder
+{
+  text-align: center;
+}
+.mrg
+{
+  margin-right: 37%;
+}

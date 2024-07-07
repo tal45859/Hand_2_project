@@ -1,0 +1,81 @@
+<div *ngIf="OpenSun!=1" class="container">
+  <div class="mb-5">
+    <ul class="nav justify-content-center" >
+      <li class="nav-item" *ngFor="let item of ArrAllSubCategory | slice:0:5">
+        <a class="btn btn-secondary ms-2" (click)="this.SubCategoryId=item.Id;SortBySubCategory()">{{item.SubcategoryName}}</a>
+      </li>
+      <li class="nav-item" >
+        <a class="btn btn-secondary ms-2" data-bs-toggle="modal" data-bs-target="#staticBackdroppp">עוד...</a>
+      </li>
+
+
+    </ul>
+  </div>
+
+
+<div  class="row row-cols-1 row-cols-md-3 g-4 mb-3">
+  <div *ngFor="let item of ArrAllPost  | paginate: { itemsPerPage: 9, currentPage: page }" class="col">
+    <div class="card h-100">
+      <img src="{{GetImageByPost(item.Id)}}" class="card-img-top" alt="{{item.Title}}">
+      <div class="card-body">
+        <h2 class="card-title">{{item.Title}}</h2>
+        <p class="card-text">{{item.Area?.AreaName}}</p>
+        <div class="mb-1"><button class="btn btn-primary" (click)="OpenSun=1;PostObjToSun=item">פרטים נוספים</button></div>
+        <div class=" mb-1">
+          <i *ngIf="Role == 'Classic'||Role=='Admin'" title="הוסף למועדפים" (click)="ClickAddFavorite(item.Id)" class="btn btn-danger ms-2 bi bi-heart"></i>
+          <i  *ngIf="Role =='Admin'" title="מחק" class="bi bi-trash3 btn btn-danger ms-2"(click)="ClickDeleteForAdmin(item.Id)"></i>
+          <i  title="דווח" class="bi bi-flag btn btn-secondary" (click)="this.ReportingObj.PostId=item.Id" data-bs-toggle="modal" data-bs-target="#staticBackReport"></i>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<pagination-controls class="text-center" (pageChange)="page = $event"  [previousLabel]="'הקודם'"
+[nextLabel]="'הבא'"></pagination-controls>
+</div>
+
+<app-Post-Details *ngIf="OpenSun==1" [PostObj]="PostObjToSun" (CloseMeOutpot)="CloseTheSun()" ></app-Post-Details>
+
+
+
+<div  class="modal fade" id="staticBackdroppp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropppLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <h2 class="modal-title" id="staticBackdropppLabel">כל התתי קטגוריות</h2>
+      </div>
+      <div class="modal-body row" *ngFor="let item of ArrAllSubCategory">
+       <button type="button" (click)="this.SubCategoryId=item.Id;SortBySubCategory()" class="btn btn-secondary" data-bs-dismiss="modal">{{item.SubcategoryName}}</button>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ביטול</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div  class="modal fade" id="staticBackReport" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackReportLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <h2 class="modal-title" id="staticBackReportLabel">דיווח</h2>
+      </div>
+      <div class="modal-body row">
+        <div class="mb-1 ">
+          <input class="form-control {{this.ResponseMessage.Isok?'':'is-invalid'}}" type="text" title="סיבת דיווח" autocapitalize="ReportCause" placeholder="סיבת דיווח" [(ngModel)]="ReportingObj.Cause"
+          id="validationLastName" aria-describedby="validationLastNameFeedback" required>
+          <div id="validationLastNameFeedback" class="invalid-feedback container">
+            {{this.ResponseMessage.Message}}
+          </div>
+        </div>
+        <div class="mt-1 mb-2  d-flex justify-content-center"><button type="button" (click)="AddReporting()" class="btn btn-primary" >דווח</button>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ביטול</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">סיום</button>
+      </div>
+    </div>
+  </div>
+</div>
+

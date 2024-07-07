@@ -1,0 +1,31 @@
+.container
+{
+  direction: rtl;
+  text-align: center;
+
+}
+
+
+.AddDisplay{
+  display: contents;
+  justify-content: center;
+  cursor: pointer;
+}
+.removeDisplay
+{
+  display: none;
+}
+
+input,input::placeholder
+{
+  text-align: center;
+}
+.colorList
+{
+  background-color :#2c3034;
+  color: aliceblue;
+}
+.modal-body
+{
+  text-align: center;
+}

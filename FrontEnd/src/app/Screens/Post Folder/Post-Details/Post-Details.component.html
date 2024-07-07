@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="float-end mb-3"><button type="button" class="btn-close" (click)="ClickClose()" aria-label="Close"></button></div>
+  <h1 class="mt-3">{{this.PostObj?.Body}}</h1>
+
+  <div class="mt-3">
+    <div *ngIf="ImageArray.length>0"><img src="{{ImageArray[Index].Url}}" alt=""></div>
+    <div *ngIf="ImageArray.length==0"><img src="assets/defult.png" alt=""></div>
+      <div  *ngIf="ImageArray.length>0" class="btn-group mt-2" role="group" aria-label="Basic outlined example">
+        <button type="button"  class="btn btn-outline-primary ms-1" (click)="ChangeIndex(true)">קדימה</button>
+        <button type="button" class="btn btn-outline-primary" (click)="ChangeIndex(false)">אחורה</button>
+    </div>
+
+    <div class="mt-5">
+      <div class="mt-3">
+        <h3>עיר: {{this.PostObj?.Area?.AreaName}}</h3>
+      </div>
+      <div class="mt-3">
+        <h3>תאריך פרסום: {{this.PostObj?.UploadDate| date:'dd/MM/yy'}}</h3>
+      </div>
+      <div class="mt-3">
+        <h3>מחיר: {{this.PostObj?.Price}}</h3>
+      </div>
+      <div class="mt-3">
+        <h3>שם תת קטגוריה: {{this.PostObj?.Subcategory?.SubcategoryName}}</h3>
+      </div>
+      <div class="mt-3">
+        <h3>תוכן: {{this.PostObj?.Body}}</h3>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+</div>
+

@@ -1,0 +1,6 @@
+<div class="container">
+  <app-Add-Post *ngIf="this.OpenNextStep==1" (CloseMeOutpot)="NextStep($event)"></app-Add-Post>
+  <app-Add-Image *ngIf="this.OpenNextStep==2" [LastPostId]="PostId"></app-Add-Image>
+</div>
+
+

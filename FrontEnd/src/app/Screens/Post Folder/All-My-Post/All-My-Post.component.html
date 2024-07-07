@@ -1,0 +1,29 @@
+<div *ngIf="OpenSun==0" class="container">
+  <div class="mb-5 mt-4">
+    <h1>המודעות שלי</h1>
+  </div>
+
+<div  class="row row-cols-1 row-cols-md-3 g-4 mb-3">
+  <div *ngFor="let item of ArrAllPost  | paginate: { itemsPerPage: 9, currentPage: page }" class="col">
+    <div class="card h-100">
+      <img src="{{GetImageByPost(item.Id)}}" class="card-img-top" alt="{{item.Title}}">
+      <div class="card-body">
+        <h2 class="card-title">{{item.Title}}</h2>
+        <p class="card-text">{{item.Area?.AreaName}}</p>
+        <div class="mb-1"><button class="btn btn-primary" (click)="OpenSun=1;PostObjToSun=item">פרטים נוספים</button></div>
+          <div class="mb-1">
+            <!-- <button (click)="PostObjToSun=item;OpenSun=2" class="btn btn-primary ms-2">ערוך</button> -->
+            <i title="ערוך" class="bi bi-pencil-square btn btn-primary ms-1 " (click)="PostObjToSun=item;OpenSun=2"></i>
+            <i title="מחק" class="bi bi-trash3 btn btn-danger "(click)="ClickDelete(item.Id)"></i>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<pagination-controls class="text-center" (pageChange)="page = $event"  [previousLabel]="'הקודם'"
+[nextLabel]="'הבא'"></pagination-controls>
+</div>
+
+<app-Post-Details *ngIf="OpenSun==1" [PostObj]="PostObjToSun" (CloseMeOutpot)="CloseTheSun()" ></app-Post-Details>
+<app-Update-PostHome *ngIf="OpenSun==2"[PostObjForUpdate]="PostObjToSun"></app-Update-PostHome>

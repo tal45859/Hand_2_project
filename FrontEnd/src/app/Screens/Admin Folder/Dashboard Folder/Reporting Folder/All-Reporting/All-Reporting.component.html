@@ -1,0 +1,54 @@
+<div *ngIf="OpenSun==0" class="container">
+
+  <h2 class="mt-3 mb-3" *ngIf="SelectType==1">כל הדיווחים</h2>
+  <h2 class="mt-3 mb-3" *ngIf="SelectType==2">כל הדיווחים הפעילים</h2>
+  <h2 class="mt-3 mb-3" *ngIf="SelectType==3">כל הדיווחים הלא פעילים</h2>
+  <div class="list-group" *ngFor="let item of ReportingArr | paginate: { id:'test', itemsPerPage: 6, currentPage: page }">
+    <div type="button" class="list-group-item colorList mt-2 " (click)="ClickOpenSub(item.Id)" aria-current="true">
+       <div class=" d-flex justify-content-start">{{item.IsActive?'מצב: לא פעיל':'מצב: פעיל'}}</div>
+    </div>
+    <div class="removeDisplay" id="{{item.Id}}">
+      <!-- Scrollable modal -->
+      <div class="list-group-item ">
+        <div  (click)="GetPostByIDForSun(item.PostId)" class=" d-flex justify-content-start btn btn-link">מזהה מודעה: {{item.PostId}}</div>
+        <h2>סיבת הדיווח</h2>
+        <div class="mt-2 mb-2">{{item.Cause}}</div>
+        <div *ngIf="this.SelectType==3" class="mt-2">
+          <h2>סיבת סגירה</h2>
+          <div class="mt-2 mb-2">{{item.ClosingExplanation}}</div>
+        </div>
+      <br>
+      <i title="פתור דיווח" class="bi bi-pencil-square btn btn-secondary ms-1" (click)="this.ReportingItemForUpdate=item" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
+      <i title="מחק דיווח" class="bi bi-trash3 btn btn-danger ms-1" (click)="DeleteReporting(item.Id)"></i>
+    </div>
+    </div>
+  </div>
+  <div class=" mt-5">
+    <pagination-controls id="test" (pageChange)="page = $event"  [previousLabel]="'הקודם'"
+    [nextLabel]="'הבא'"></pagination-controls>
+  </div>
+</div>
+
+<app-Post-Details *ngIf="OpenSun==1" [PostObj]="PostObjToSun" (CloseMeOutpot)="CloseTheSun()" ></app-Post-Details>
+
+
+  <div  class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <h2 class="modal-title" id="staticBackdropLabel">פתירת דיווח</h2>
+        </div>
+        <div class="modal-body">
+            <p class="mb-2">תשובת מנהל לדיווח</p>
+            <input class="form-control" placeholder="סיבת סגירת הדיווח" type="text" [(ngModel)]="ReportingItemForUpdate.ClosingExplanation">
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-primary" (click)="UpdateReportingItem()"  data-bs-dismiss="modal" >סיום</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ביטול</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+

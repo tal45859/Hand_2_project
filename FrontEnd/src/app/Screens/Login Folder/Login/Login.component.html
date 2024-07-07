@@ -1,0 +1,56 @@
+<div class="container">
+<h2 class="mt-2 mb-3">התחברות</h2>
+  <div class="container">
+
+    <div class="mb-3 ">
+      <input class="form-control {{this.ResponseMessage[0].Isok?'':'is-invalid'}}" type="email" title="מייל" autocapitalize="email" placeholder="מייל" [(ngModel)]="LoginObj.Email"
+      id="validationEmail" aria-describedby="validationEmailFeedback" required>
+      <div id="validationEmailFeedback" class="invalid-feedback">
+        {{this.ResponseMessage[0].Message}}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <input class="form-control {{this.ResponseMessage[1].Isok?'':'is-invalid'}} " type="{{OpenPassword?'text':'password'}}" autocapitalize="password" placeholder="סיסמה" title="סיסמה" [(ngModel)]="LoginObj.Password"
+      id="validationPassword" aria-activedescendant="validationPasswordFeedback" required>
+      <div class="mt-2">
+        <i class="bi {{this.OpenPassword?'bi-eye-fill':'bi-eye-slash-fill'}} " (click)="OpenPassword=!OpenPassword"></i>
+      </div>
+      <div id="validationPasswordFeedback" class="invalid-feedback">
+        {{ResponseMessage[1].Message}}
+      </div>
+    </div>
+
+    <div *ngIf="!this.ResponseMessage[2].Isok" class="mb-3 mt-2">
+      <small class="text-danger">{{this.ResponseMessage[2].Message}}</small>
+    </div>
+
+
+    <div *ngIf="!spiner">
+    <button class="btn btn-primary mb-3" (click)="ClickLogin()">התחבר</button>
+   <div><a class="mb-3 text-primary" href="/ForgotPassword">שכחתי סיסמה</a></div>
+    <div><a class="mb-3 text-primary" href="/SingUp">הרשמה</a></div>
+    <div><p *ngIf="!this.ResponseMessage[0].Isok||this.ResponseMessage"></p></div>
+  </div>
+
+    <div *ngIf="spiner" class="spinner-border text-primary" role="status">
+      <span class="sr-only"></span>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- <div class="mb-3">
+  <input class="form-control mb-1 {{this.UserValidationResponse[0].Isok ?'':'is-invalid'}} "  autocomplete="email" type="email" [(ngModel)]="LoginObject.Email"
+   placeholder="מייל" id="validationServerEmail" aria-describedby="validationServerEmailFeedback" required>
+  <div id="validationServerEmailFeedback" class="invalid-feedback">
+    {{this.UserValidationResponse[0].Message}}
+  </div>
+</div> -->
+
+
+
+
+

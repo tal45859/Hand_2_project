@@ -1,0 +1,20 @@
+
+<div class="container mt-4"><h2>{{this.ArrCategoryText[this.TypeDetails]}}</h2></div>
+<div class="container d-flex justify-content-center">
+  <div class="grad1 ms-2"  style="--col: #FCB72A; --from: 0%;--col:#FCB72A;--to: {{this.PrecentageClassicUser}}%">
+  </div>
+</div>
+<div class="container mt-3">
+
+
+  <div class="entry me-5">
+    <div class="entry-color ms-2" style="--color:#FCB72A"></div>
+    <div class="entry-text"> %{{this.PrecentageClassicUser}} {{this.TypeDetails==0?'קלאסים':'פעילים'}}</div>
+  </div>
+  <div class="entry me-5">
+    <div class="entry-color ms-2"style="--color:blue"></div>
+    <div class="entry-text">%{{100-this.PrecentageClassicUser}} {{this.TypeDetails==0?'מנהלים':'לא פעילים'}}</div>
+  </div>
+
+</div>
+

@@ -1,0 +1,55 @@
+<div class="container mt-4">
+  <h2 class="mt-2 mb-3">כל הקטגוריות</h2>
+  <div class="list-group" *ngFor="let item of ArrCategory | paginate: { id:'test', itemsPerPage: 4, currentPage: page }">
+    <button type="button" class="list-group-item colorList mt-2" (click)="this.CategoryIdForGetAllSubCategory=item.Id;GetAllSubCategoryByCAtegoryId();ClickOpenSub(item.Id)" aria-current="true">{{item.CategoryName}}</button>
+    <div class="removeDisplay" id="{{item.Id}}">
+      <!-- Scrollable modal -->
+
+    <div *ngFor="let subitem of ArrSubCategory | paginate: { id:'test2', itemsPerPage: 3, currentPage: page1 }">
+      <div class="list-group-item ">{{subitem.SubcategoryName}}
+      <br>
+      <i title="מחק תת קטגוריה" (click)="this.DeleteOrUpdate[0]=true;this.DeleteOrUpdate[1]=false;this.SubCategoryId=subitem.Id" class="bi bi-trash3 btn btn-danger ms-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
+      <i title="ערוך תת קטגוריה"(click)="this.DeleteOrUpdate[0]=false;this.DeleteOrUpdate[1]=false;this.SubCategoryObjForUpdate=subitem" class="bi bi-pencil-square btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i></div>
+    </div>
+    <div class=" mt-5">
+      <pagination-controls id="test2" (pageChange)="page1 = $event"  [previousLabel]="'הקודם'"
+      [nextLabel]="'הבא'"></pagination-controls>
+    </div>
+
+    </div>
+    <div class="mt-1 " id="Category{{item.Id}}">
+      <i title="מחק קטגוריה" class="bi bi-trash3 btn btn-danger ms-1" (click)="this.DeleteOrUpdate[0]=true;this.DeleteOrUpdate[1]=true;this.CategoryId=item.Id" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
+      <i title="ערוך קטגוריה" class="bi bi-pencil-square btn btn-primary" (click)="this.DeleteOrUpdate[0]=false;this.DeleteOrUpdate[1]=true;this.CategoryObjForUpdate=item" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
+    </div>
+  </div>
+  <div class=" mt-5">
+    <pagination-controls id="test" (pageChange)="page = $event"  [previousLabel]="'הקודם'"
+    [nextLabel]="'הבא'"></pagination-controls>
+  </div>
+
+
+
+  <div  class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <h2 class="modal-title" id="staticBackdropLabel">{{this.DeleteOrUpdate[0]?'אישור מחיקה':'עריכה'}}</h2>
+        </div>
+        <div class="modal-body">
+            <p *ngIf="this.DeleteOrUpdate[0]">{{this.DeleteOrUpdate[1]?' האם אתה בטוח שברצונך למחוק את הקטגוריה לצמיתות?':' האם אתה בטוח שברצונך למחוק את התת הקטגוריה לצמיתות?'}}      </p>
+            <input *ngIf="!this.DeleteOrUpdate[0]&&!this.DeleteOrUpdate[1]" class="form-control"  placeholder="שם תת קטגוריה" type="text" [(ngModel)]="this.SubCategoryObjForUpdate.SubcategoryName">
+            <input *ngIf="!this.DeleteOrUpdate[0]&&this.DeleteOrUpdate[1]" class="form-control" placeholder="שם קטגוריה" type="text" [(ngModel)]="this.CategoryObjForUpdate.CategoryName">
+            <p *ngIf="!this.ResponseMessage.Isok" class="mt-2 text-danger">{{this.ResponseMessage.Message}}</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button *ngIf="this.DeleteOrUpdate[0]" type="button" class="btn btn-danger" (click)="this.DeleteOrUpdate[1]?ClickDeleteCategory():ClickDeleteSubCategory()"  data-bs-dismiss="modal" >מחק</button>
+          <button *ngIf="!this.DeleteOrUpdate[0]" type="button" class="btn btn-primary" (click)="this.DeleteOrUpdate[1]?ClickUpdateCategory():ClickUpdateSubCategory()" data-bs-dismiss="modal">עדכן</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ביטול</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

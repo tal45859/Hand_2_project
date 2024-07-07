@@ -1,0 +1,42 @@
+<div class="container">
+  <h2 class="mt-2 mb-3">הוספת תת קטגוריה</h2>
+    <div class="container">
+
+      <div class="mb-3 ">
+        <input class="form-control {{this.ResponseMessage[0].Isok?'':'is-invalid'}}" type="text" title="שם תת קטגוריה" autocapitalize="SubcategoryName" placeholder="שם תת קטגוריה" [(ngModel)]="this.ObjForAddSubCategory.SubcategoryName"
+        id="validationSubCategory" aria-describedby="validationSubCategoryFeedback" required>
+        <div id="validationSubCategoryFeedback" class="invalid-feedback">
+          {{this.ResponseMessage[0].Message}}
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="validationServerSelect" class="form-label">קטגרויה ראשית</label>
+        <select class="form-select mb-1 {{this.ResponseMessage[1].Isok ?'':'is-invalid'}} "
+         id="validationServerSelect" aria-describedby="validationServerSelectFeedback"
+         [(ngModel)]="ObjForAddSubCategory.CategoryId" required>
+          <option selected disabled value="">בחר קטגוריה ראשית</option>
+          <option *ngFor=" let item of ArrCategory " [value]="item.Id">{{item.CategoryName}}</option>
+        </select>
+        <div id="validationServerSelectFeedback" class="invalid-feedback">
+          {{this.ResponseMessage[1].Message}}
+        </div>
+      </div>
+
+      <div *ngIf="this.IsCreate" class="mb-2"><p class="text-success">תת הקטגוריה הוספה בהצלחה</p></div>
+      <div *ngIf="!Spiner">
+       <button class="btn btn-primary mb-3" (click)="ClickAddSubCategory()">הוסף</button>
+      </div>
+
+      <div *ngIf="Spiner" class="spinner-border text-primary" role="status">
+        <span class="sr-only"></span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+

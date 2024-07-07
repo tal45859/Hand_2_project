@@ -1,0 +1,28 @@
+<!--
+<div >
+  <img  src="assets/strip.jpg" alt="Snow" class="responsive" >
+<nav id="navs" class="navbar navbar-expand-lg  navbar-light top-right">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+      <div class="navbar-nav" *ngFor="let header of HeaderNavBarData">
+        <a id="{{header.Name}}"  class="nav-link active text-white"  href="{{header.Url}}">{{header.Name}}</a>
+
+      </div>
+    </div>
+  </div>
+</nav>
+</div> -->
+
+
+<nav dir="rtl" class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <ul class="navbar-nav" >
+      <li class="nav-item" *ngFor="let header of HeaderNavBarData">
+        <a class="nav-link" id="{{header.Url}}" href="{{header.Url}}">{{header.Name}}</a>
+      </li>
+    </ul>
+  </div>
+</nav>

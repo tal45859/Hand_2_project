@@ -1,0 +1,30 @@
+<div class="container">
+  <h2 class="mt-2 mb-3">הוספת קטגוריה</h2>
+    <div class="container">
+
+      <div class="mb-3 ">
+        <input class="form-control {{this.ResponseMessage.Isok?'':'is-invalid'}}" type="text" title="שם קטגוריה" autocapitalize="CategoryName" placeholder="שם קטגוריה" [(ngModel)]="ObjForAddCategory.CategoryName"
+        id="validationCategory" aria-describedby="validationCategoryFeedback" required>
+        <div id="validationCategoryFeedback" class="invalid-feedback">
+          {{this.ResponseMessage.Message}}
+        </div>
+      </div>
+      <div *ngIf="this.IsCreate" class="mb-2"><p class="text-success">הקטגוריה הוספה בהצלחה</p></div>
+
+
+      <div *ngIf="!Spiner">
+       <button class="btn btn-primary mb-3" (click)="ClickAddCategory()">הוסף</button>
+      </div>
+
+      <div *ngIf="Spiner" class="spinner-border text-primary" role="status">
+        <span class="sr-only"></span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+

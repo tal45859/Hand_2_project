@@ -1,0 +1,7 @@
+<div class="container">
+  <app-Update-Post *ngIf="this.OpenNextStep==1" [PostId]="PostObjForUpdate?.Id" (CloseMeOutpot)="NextStep($event)"></app-Update-Post>
+  <app-Update-Image *ngIf="this.OpenNextStep==2" [PostId]="this.PostObjForUpdate?.Id"></app-Update-Image>
+</div>
+
+
+

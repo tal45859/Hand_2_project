@@ -1,0 +1,28 @@
+input,input::placeholder
+{
+  text-align: center;
+}
+
+.container
+{
+  direction: rtl;
+  text-align: center;
+
+}
+
+
+.disUpdate:disabled
+{
+  background-color :#212529;
+  color: aliceblue;
+  border: 0cap;
+}
+/* .disUpdate::placeholder
+{
+  color: rgb(0, 0, 0);
+} */
+
+.disUpdate{
+ background-color: #212529;
+ color: aliceblue;
+}

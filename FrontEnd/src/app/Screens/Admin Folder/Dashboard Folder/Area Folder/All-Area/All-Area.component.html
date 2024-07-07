@@ -1,0 +1,83 @@
+
+<div class="container">
+  <div class="mt-3">
+    <button class="btn btn-dark ms-2" (click)="GetAllArea();Select=1;">כל האזורים</button>
+    <button class="btn btn-dark ms-2" (click)="GetAreaByTopAreaId(2);Select=2;">מרכז</button>
+    <button class="btn btn-dark ms-2" (click)="GetAreaByTopAreaId(25);Select=3;">צפון</button>
+    <button class="btn btn-dark ms-2" (click)="GetAreaByTopAreaId(43);Select=4;">דרום</button>
+    <button class="btn btn-dark ms-2" (click)="GetAreaByTopAreaId(100);Select=5;">מחוז ירושלים</button>
+    <button class="btn btn-dark ms-2" (click)="GetAreaByTopAreaId(19);Select=6;">שרון</button>
+    <button class="btn btn-dark ms-2" (click)="GetAreaByTopAreaId(41);Select=7;">שפלה ומישור החוף הדרומי</button>
+    <button class="btn btn-dark ms-2" (click)="GetAreaByTopAreaId(101);Select=8;">חדרה, זכרון והעמקים</button>
+    <button class="btn btn-dark ms-2" (click)="GetAreaByTopAreaId(75);Select=9;">יהודה ושומרון ובקעת הירדן</button>
+
+
+  </div>
+
+  <div class="mt-2 mb-3">
+    <h1 *ngIf="Select==1">כל האזורים</h1>
+    <h1 *ngIf="Select==2">מרכז</h1>
+    <h1 *ngIf="Select==3">צפון</h1>
+    <h1 *ngIf="Select==4">דרום</h1>
+    <h1 *ngIf="Select==5">מחוז ירושלים</h1>
+    <h1 *ngIf="Select==6">שרון</h1>
+    <h1 *ngIf="Select==7">שפלה ומישור החוף הדרומי</h1>
+    <h1 *ngIf="Select==8">חדרה, זכרון והעמקים</h1>
+    <h1 *ngIf="Select==9">יהודה ושומרון ובקעת הירדן</h1>
+  </div>
+
+
+
+
+  <table class="table table-dark mt-2">
+    <thead>
+      <tr>
+        <th>שם אזור</th>
+        <th>קוד סביבה</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of AllAreaArr | paginate: { itemsPerPage: 10, currentPage: page }">
+        <td><input class="form-control disUpdate " type="text" placeholder="" [(ngModel)]="this.item.AreaName"  disabled="{{OpenUpdate ==''+item.Id?false:true}}"></td>
+        <!--  <td><input class="form-control disUpdate " type="text" placeholder="" [(ngModel)]="this.item.AreaName"  disabled="{{openUpdateNew ==''+item.Id?false:true}}"></td> -->
+        <td><input class="form-control disUpdate" type="number" placeholder="" [(ngModel)]="this.item.TopAreaId"  disabled="{{OpenUpdate ==''+item.Id?false:true}}"></td>
+        <!-- <td *ngIf="OpenUpdate"><i title="ערוך" class="bi bi-pencil-square btn btn-primary"  (click)="openUpdateNew=''item.Id;OpenUpdate=false"></i></td> -->
+        <td *ngIf="OpenUpdate ==''+item.Id?false:true"><i title="ערוך" class="bi bi-pencil-square btn btn-primary"  (click)=" OpenUpdate=''+item.Id"></i></td>
+        <td *ngIf="OpenUpdate ==''+item.Id?true:false"><button title="עדכן"  class="btn btn-primary"  (click)="this.ObjToUpdateArea=item;ClickUpdateArea()">עדכן</button></td>
+        <td><i title="מחק" class="bi bi-trash3 btn btn-danger" (click)="this.AreaIdForDelete=item.Id" data-bs-toggle="modal"   data-bs-target="#staticBackdrop"></i></td>
+      </tr>
+
+      <tr *ngFor="let item of ResponseMessage">
+        <td *ngIf="!item.Isok" class="text-danger" colspan="10" >{{item.Message}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <pagination-controls class="text-center" (pageChange)="page = $event"  [previousLabel]="'הקודם'"
+  [nextLabel]="'הבא'"></pagination-controls>
+
+  <div  class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <h2 class="modal-title" id="staticBackdropLabel">אישור מחיקה</h2>
+        </div>
+        <div class="modal-body">
+            <p>האם אתה בטוח שברצונך למחוק את האזור לצמיתות?</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-danger" (click)="ClickDeleteArea()"  data-bs-dismiss="modal" >אישור</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ביטול</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+

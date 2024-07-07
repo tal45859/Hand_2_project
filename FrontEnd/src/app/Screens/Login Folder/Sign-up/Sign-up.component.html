@@ -1,0 +1,76 @@
+<div class="container">
+  <h2 class="mt-3 mb-3">הרשמה</h2>
+
+
+    <div class="mb-3 ">
+      <input class="form-control {{this.ResponseMessage[0].Isok?'':'is-invalid'}}" type="text" title="שם פרטי" autocapitalize="FirstName" placeholder="שם פרטי" [(ngModel)]="UserObj.FirstName"
+      id="validationFirstName" aria-describedby="validationFirstNameFeedback" required>
+      <div id="validationFirstNameFeedback" class="invalid-feedback">
+        {{this.ResponseMessage[0].Message}}
+      </div>
+    </div>
+
+    <div class="mb-3 ">
+      <input class="form-control {{this.ResponseMessage[1].Isok?'':'is-invalid'}}" type="text" title="שם משפחה" autocapitalize="LastName" placeholder="שם משפחה" [(ngModel)]="UserObj.LastName"
+      id="validationLastName" aria-describedby="validationLastNameFeedback" required>
+      <div id="validationLastNameFeedback" class="invalid-feedback">
+        {{this.ResponseMessage[1].Message}}
+      </div>
+    </div>
+
+    <div class="mb-3 ">
+      <input class="form-control {{this.ResponseMessage[2].Isok?'':'is-invalid'}}" type="email" title="מייל" autocapitalize="email" placeholder="מייל" [(ngModel)]="UserObj.Mail"
+      id="validationMail" aria-describedby="validationMailFeedback" required>
+      <div id="validationMailFeedback" class="invalid-feedback">
+        {{this.ResponseMessage[2].Message}}
+      </div>
+    </div>
+
+    <div class="mb-3 ">
+      <input class="form-control {{this.ResponseMessage[3].Isok?'':'is-invalid'}}" type="date" title="תאריך לידה" autocapitalize="Birthdate" placeholder="תאריך לידה" [(ngModel)]="UserObj.Birthdate"
+      id="validationBirthdate" aria-describedby="validationBirthdateFeedback" required>
+      <div id="validationBirthdateFeedback" class="invalid-feedback">
+        {{this.ResponseMessage[3].Message}}
+      </div>
+    </div>
+
+
+    <div class="mb-3 ">
+      <input class="form-control {{this.ResponseMessage[4].Isok?'':'is-invalid'}}" type="tel" title="טלפון" autocomplete="tel" autocapitalize="tel" placeholder="טלפון" [(ngModel)]="UserObj.Phone"
+      id="validationPhone" aria-describedby="validationPhoneFeedback" required>
+      <div id="validationPhoneFeedback" class="invalid-feedback">
+        {{this.ResponseMessage[4].Message}}
+      </div>
+    </div>
+
+
+    <div class="mb-3 ">
+      <input class="form-control {{this.ResponseMessage[5].Isok?'':'is-invalid'}}" type="{{this.ShowPassword?'text':'password'}}" title="סיסמה" autocapitalize="password" placeholder="סיסמה" [(ngModel)]="UserObj.Password"
+      id="validationPassword" aria-describedby="validationPasswordFeedback" required>
+      <div class="mt-2">
+        <i class="bi {{this.ShowPassword?'bi-eye-fill':'bi-eye-slash-fill'}} " (click)="ShowPassword=!ShowPassword"></i>
+      </div>
+      <div id="validationPasswordFeedback" class="invalid-feedback">
+        {{this.ResponseMessage[5].Message}}
+      </div>
+    </div>
+
+
+
+  <div *ngIf="!spinner">
+    <button class="btn btn-primary" (click)="ClickSignUp()"> הירשם</button>
+  </div>
+
+  <div *ngIf="spinner" class="spinner-border text-primary" role="status">
+    <span class="sr-only"></span>
+  </div>
+
+  <div class="mt-2" *ngIf="IsCreate">
+    <small class="text-success">המשתמש נוצר בהצלחה</small>
+  </div>
+
+</div>
+
+
+
+

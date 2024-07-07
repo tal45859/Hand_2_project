@@ -1,0 +1,25 @@
+.container
+{
+  direction: rtl;
+  text-align: center;
+}
+.grad1 {
+  margin-top: 5%;
+  height: 200px;
+  width: 200px;
+  background-color: red;
+  background: conic-gradient(var(--col) var(--from) ,var(--col) var(--to),blue var(--to),blue 100%);
+  border-radius: 50%;
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+}
+
+.entry-color {
+    height: 10px;
+    width: 10px;
+    background-color: var(--color);
+}
+
